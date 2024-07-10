@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投诉表单</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .container h2 {
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        .container label {
+            display: block;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .container input[type="radio"] {
+            display: none;
+        }
+        .container input[type="radio"] + span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .container input[type="radio"]:checked + span {
+            border-color: #09bb07;
+            background-color: #09bb07;
+        }
+        .container input[type="radio"]:checked + span::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            margin: 4px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        .container textarea {
+            width: calc(100% - 40px);
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            resize: none;
+        }
+        .container button {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 20px;
+            padding: 15px 0;
+            background-color: #09bb07;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .container button:hover {
+            background-color: #08a106;
+        }
+        #editSection {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="complaintContainer">
+    <h2>投诉表单</h2>
+    <form id="complaintForm">
+        <label>
+            <input type="radio" name="reason" value="不适当内容">
+            <span></span>
+            发布不适当内容对我造成骚扰
+        </label>
+        <label>
+            <input type="radio" name="reason" value="欺诈行为">
+            <span></span>
+            存在欺诈骗钱行为
+        </label>
+        <label>
+            <input type="radio" name="reason" value="账号被盗">
+            <span></span>
+            此账号可能被盗用了
+        </label>
+        <label>
+            <input type="radio" name="reason" value="侵权行为">
+            <span></span>
+            存在侵权行为 (侵犯知识产权、人身权)
+        </label>
+        <label>
+            <input type="radio" name="reason" value="仿冒品信息">
+            <span></span>
+            发布仿冒品信息
+        </label>
+        <label>
+            <input type="radio" name="reason" value="冒充他人">
+            <span></span>
+            冒充他人
+        </label>
+        <label>
+            <input type="radio" name="reason" value="侵犯未成年人">
+            <span></span>
+            侵犯未成年人权益
+        </label>
+        <label>
+            <input type="radio" name="reason" value="粉丝行为">
+            <span></span>
+            粉丝无底线追星行为
+        </label>
+        <button type="button" id="nextButton">下一步</button>
+    </form>
+</div>
+
+<div class="container" id="editSection">
+    <h2>描述您的投诉</h2>
+    <form id="editForm">
+        <textarea name="details" rows="5" placeholder="请输入详细投诉内容..."></textarea>
+        <button type="submit">提交投诉</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('nextButton').addEventListener('click', function() {
+        let selectedReason = document.querySelector('input[name="reason"]:checked');
+        if (selectedReason) {
+            document.getElementById('complaintContainer').style.display = 'none';
+            document.getElementById('editSection').style.display = 'block';
+        } else {
+            alert('请选择一个投诉理由');
+        }
+    });
+
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('投诉已提交');
+        // 可以在这里添加代码将表单数据发送到服务器
+    });
+</script>
+
+</body>
+</html>
